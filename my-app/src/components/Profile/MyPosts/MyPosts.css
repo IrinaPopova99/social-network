@@ -1,0 +1,27 @@
+.post-input textarea{
+    width: 99.5%;
+    background-color: #f4f7f2;
+    border: 0px solid gray;
+    border-radius: 8px;
+    height: 50px;
+    outline: none;
+    vertical-align: top;
+    padding: 10px;
+}
+.send-button {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: right;
+}
+.send-button button {
+    background-color: #90a777;
+    border-radius: 8px;
+    border: none;
+    height: 30px;
+    width: 100px;
+    color: #ffffff;
+}
+.posts {
+    display: flex;
+    flex-direction: column;
+}

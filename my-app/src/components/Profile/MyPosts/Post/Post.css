@@ -1,0 +1,31 @@
+
+.post {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+.post-content {
+    display: flex;
+    flex-direction: row;
+}
+.post-photo {
+    width: 60px;
+    margin-right: 25px;
+}
+.post-photo img{
+    width: 100%;
+    border-radius: 100px;
+}
+.post-text {
+    text-align: left;
+    width: 100%;
+    border-radius: 8px;
+    background-color: #f4f7f2;
+    padding: 5px;
+}
+.post-like {
+    padding-right: 5px;
+    text-align: right;
+    color: grey;
+    cursor: pointer;
+}
