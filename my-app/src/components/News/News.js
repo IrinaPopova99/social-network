@@ -1,4 +1,4 @@
-import "./News";
+import "./News.css";
 
 const News = (props) => {
     return (

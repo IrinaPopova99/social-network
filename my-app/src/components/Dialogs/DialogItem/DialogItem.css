@@ -1,0 +1,11 @@
+.dialogs-item {
+    border-bottom: 1px solid #d1d1d1;
+    padding-left: 25px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    border-radius: 8px;
+}
+.dialogs-item.active {
+    font-weight: bold;
+    background-color:#f3f6f1;
+}

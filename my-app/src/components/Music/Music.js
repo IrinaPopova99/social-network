@@ -1,4 +1,4 @@
-import "./Music";
+import "./Music.css";
 
 const Music = (props) => {
     return (
