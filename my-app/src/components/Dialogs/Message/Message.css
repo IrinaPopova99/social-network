@@ -1,3 +1,10 @@
-.messages {
-    padding-left: 25px;
+
+.message-item {
+    padding: 10px 20px 10px 20px;
+    background-color:#f3f6f1;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    width: fit-content;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
 }

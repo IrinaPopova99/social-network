@@ -6,3 +6,20 @@
     border-right: 1px solid #888888;
     
 }
+.dialogs-items a.active {
+    font-weight: bold;
+    background-color:#f3f6f1;
+}
+.messages {
+    padding-left: 25px;
+}
+.right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.send-message textarea {
+    width: 99.25%;
+    border-radius: 8px;
+    min-height: 50px;
+}

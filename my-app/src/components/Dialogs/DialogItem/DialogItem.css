@@ -1,11 +1,16 @@
 .dialogs-item {
     border-bottom: 1px solid #d1d1d1;
-    padding-left: 25px;
+    padding-left: 15px;
     padding-bottom: 20px;
     padding-top: 20px;
     border-radius: 8px;
+    display:flex;
+    flex-direction: row;
+    justify-content: left;
 }
-.dialogs-item.active {
-    font-weight: bold;
-    background-color:#f3f6f1;
+
+.dialogs-item p {
+    color: black;
+    font-size: 18px;
+    margin-left: 15px;
 }

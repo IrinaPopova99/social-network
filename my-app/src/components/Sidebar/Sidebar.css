@@ -1,0 +1,12 @@
+.sidebar  {
+    grid-area: sidebar;
+    padding: 25px 25px 25px 25px;
+}
+.sidebar h3 {
+    padding: 0px;
+}
+.friends-list {
+    margin: 15px 0px 15px 0px;
+    display: flex;
+    flex-direction: row;
+}

@@ -6,6 +6,9 @@ h3 {
   color: #777777;
   margin: 0px;
 }
+input, button, textarea {
+  outline:none;
+}
 .wrapper {
   background-color: #fdfdfc;
   width: auto;
@@ -15,7 +18,7 @@ h3 {
   display: grid;
   grid-template-areas: 
     "nav cont"
-    ". cont"
+    "sidebar cont"
     ". cont";
   grid-template-rows: 3fr 3fr;
   grid-template-columns: 2fr 6fr;
@@ -42,3 +45,25 @@ h3 {
 /* .additional-content {
   grid-area: additional-cont;
 } */
+.photo-mini {
+  width: 60px;
+}
+.photo-mini img {
+  width: 100%;
+  border-radius: 100px;
+}
+.send-button {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-align: right;
+  outline: none;
+  border:none;
+}
+.send-button button {
+  background-color: #90a777;
+  border-radius: 8px;
+  border: none;
+  height: 30px;
+  width: 100px;
+  color: #ffffff;
+}
