@@ -1,7 +1,6 @@
 import "./Friend.css";
 
 const Friend = (props) => {
-    debugger;
     return (
         <div className="friend">
             <div className="photo-mini">

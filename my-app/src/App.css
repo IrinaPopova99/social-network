@@ -20,7 +20,7 @@ input, button, textarea {
     "nav cont"
     "sidebar cont"
     ". cont";
-  grid-template-rows: 3fr 3fr;
+  grid-template-rows: auto auto auto;
   grid-template-columns: 2fr 6fr;
   grid-gap: 25px;
   width: auto;
