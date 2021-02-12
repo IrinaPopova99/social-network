@@ -20,11 +20,9 @@ const App = (props) => {
           <Route path="/settings" component={Settings} />
           <Route path="/music" component={Music} />
           <Route path="/dialogs" render={() => <Dialogs state={props.state.dialogsPage} 
-                                                        sendMessage={props.sendMessage}
-                                                        updateNewMessageText={props.updateNewMessageText}/>} />
+                                                        dispatch={props.dispatch} />} />
           <Route path="/profile" render={() => <Profile state={props.state.profilePage} 
-                                                        addPost={props.addPost}
-                                                        updateNewPostText={props.updateNewPostText}/>} />
+                                                        dispatch={props.dispatch} />} />
         </div>
         <Sidebar state={props.state.sidebar} />
       </div>
