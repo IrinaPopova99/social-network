@@ -1,7 +1,5 @@
-const ADD_POST = 'ADD_POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
-const SEND_MESSAGE = 'SEND_MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE_NEW_MESSAGE_TEXT';
+import dialogsReducer from './dialogsReducer';
+import profileReducer from './profileReducer';
 
 let store = {
     _state: {
@@ -43,87 +41,10 @@ let store = {
     },
 
     dispatch(action) {
-        switch(action.type) {
-            case ADD_POST: {
-                let newPost = {
-                    id: 5,
-                    post: this._state.profilePage.newPostText,
-                    likesCount: 0,
-                };
-                this._state.profilePage.posts.push(newPost);
-                this._state.profilePage.newPostText = "";
-                this._subscriber(this.getState());
-                break;
-            }
-            case UPDATE_NEW_POST_TEXT: {
-                this._state.profilePage.newPostText = action.newText;
-                this._subscriber(this.getState());   
-                break;
-            }
-            case SEND_MESSAGE: {
-                let newMessage = {
-                    id: 4,
-                    message: this._state.dialogsPage.newMessageText,
-                };
-                this._state.dialogsPage.messages.push(newMessage);
-                this._state.dialogsPage.newMessageText = "";
-                this._subscriber(this.getState());
-            }
-            case UPDATE_NEW_MESSAGE_TEXT: {
-                this._state.dialogsPage.newMessageText = action.newMessage;
-                this._subscriber(this.getState());
-            }
-            default: {
-                return '';
-            }
-        }        
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._subscriber(this._state);
     }
 }
 
-export const addPostActionCreater = () => ({ type: ADD_POST });
-
-export const addMessageActionCreater = () => ({ type: SEND_MESSAGE });
-
-export const updatePostTextActionCreater = (text) => ({
-    type: UPDATE_NEW_POST_TEXT,
-    newText: text,
-});
-
-export const updateMessageTextActionCreater = (text) => ({
-    type: UPDATE_NEW_MESSAGE_TEXT,
-    newMessage: text,
-});
-
-// addPost() {
-    //     debugger;
-    //     let newPost = {
-    //         id: 5,
-    //         post: this._state.profilePage.newPostText,
-    //         likesCount: 0,
-    //     };
-    //     this._state.profilePage.posts.push(newPost);
-    //     this._state.profilePage.newPostText = "";
-    //     this._subscriber(this.getState());
-    // },
-
-    // updateNewPostText (newText) {
-    //     debugger;
-    //     this._state.profilePage.newPostText = newText;
-    //     this._subscriber(this.getState());    
-    // },
-    
-    // sendMessage() {
-    //     let newMessage = {
-    //         id: 4,
-    //         message: this._state.dialogsPage.newMessageText,
-    //     };
-    //     this._state.dialogsPage.messages.push(newMessage);
-    //     this._state.dialogsPage.newMessageText = "";
-    //     this._subscriber(this.getState());
-    // },
-
-    // updateNewMessageText (newText) {
-    //     this._state.dialogsPage.newMessageText = newText;
-    //     this._subscriber(this.getState());
-    // },
 export default store;
