@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import store from './redux/store';
+import store from './redux/redux-store';
 // import {addPost, updateNewPostText, sendMessage, updateNewMessageText, subscribe} from './redux/state';
 
 let rerenderEntireTree = (state) => {
@@ -17,6 +17,11 @@ let rerenderEntireTree = (state) => {
     document.getElementById('root')
   );
 };
-rerenderEntireTree(store.getState())
-store.subscribe(rerenderEntireTree);
+
+rerenderEntireTree(store.getState());
+
+store.subscribe(() => {
+  let state = store.getState();
+  rerenderEntireTree(state);
+});
 

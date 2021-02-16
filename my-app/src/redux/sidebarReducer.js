@@ -1,9 +1,14 @@
-// const sidebarReducer = (state, action) => {
-//     switch(action){
-//         case:
-//         default: 
-//             return state
-//     }
-// }
+let initialState = {
+    friends : [
+        {name: 'Dima'},
+        {name: 'Sveta'},
+        {name: 'Sasha'},
+    ]
+};
 
-// export default sidebarReducer;
+const sidebarReducer = (state = initialState, action) => {
+    return state;
+
+}
+
+export default sidebarReducer;
