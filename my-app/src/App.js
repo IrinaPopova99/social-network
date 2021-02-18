@@ -3,11 +3,11 @@ import './App.css';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
 import Music from './components/Music/Music';
-import Dialogs from './components/Dialogs/Dialogs';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
-import Sidebar from './components/Sidebar/Sidebar';
+import SidebarContainer from './components/Sidebar/SidebarContainer';
 
 const App = (props) => {
   return (
@@ -19,12 +19,10 @@ const App = (props) => {
           <Route path="/news" component={News} />
           <Route path="/settings" component={Settings} />
           <Route path="/music" component={Music} />
-          <Route path="/dialogs" render={() => <Dialogs state={props.state.dialogsPage} 
-                                                        dispatch={props.dispatch} />} />
-          <Route path="/profile" render={() => <Profile state={props.state.profilePage} 
-                                                        dispatch={props.dispatch} />} />
+          <Route path="/dialogs" render={() => <DialogsContainer />} />
+          <Route path="/profile" render={() => <Profile />} />
         </div>
-        <Sidebar state={props.state.sidebar} />
+        <SidebarContainer />
       </div>
     </div>
   );

@@ -17,20 +17,18 @@ let initialState = {
 
 const dialogsReducer = (state = initialState, action) => {
     switch(action.type) {
-        case SEND_MESSAGE: {
-            let newMessage = {
-                id: 4,
-                message: state.newMessageText,
+        case SEND_MESSAGE: 
+            let text = state.newMessageText;
+            return {
+                ...state,
+                newMessageText: "",
+                messages: [...state.messages, {id: 6, message: text}] // слева закидываем все элементы из старого messages,справа добавляем новый элемент в конец
             };
-            state.messages.push(newMessage);
-            debugger;
-            state.newMessageText = "";
-            return state;
-        }
-        case UPDATE_NEW_MESSAGE_TEXT: {
-            state.newMessageText = action.newMessage;
-            return state;
-        }
+        case UPDATE_NEW_MESSAGE_TEXT: 
+            return {
+                ...state,
+                newMessageText: action.newMessage
+            };
         default: {
             return state;
         }

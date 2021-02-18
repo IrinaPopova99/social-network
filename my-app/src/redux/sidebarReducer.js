@@ -1,3 +1,4 @@
+const GET_FRIENDS = 'GET_FRIENDS';
 let initialState = {
     friends : [
         {name: 'Dima'},
@@ -7,8 +8,12 @@ let initialState = {
 };
 
 const sidebarReducer = (state = initialState, action) => {
-    return state;
-
+    switch(action.type){
+        case GET_FRIENDS: return state;
+        default: return state
+    }
 }
+
+export const getFriendsActionCreator = () => ({ type: GET_FRIENDS })
 
 export default sidebarReducer;
