@@ -29,12 +29,12 @@ const Navbar = () => {
             News
           </div>
         </NavLink>
-        <NavLink to="/music">
+        <NavLink to="/users">
           <div className='nav__item'>
             <div className="nav__icons">
               <i className="fas fa-calendar-alt"></i>
             </div>
-            Music
+            Users
           </div>
         </NavLink>
         <NavLink to="/settings">
