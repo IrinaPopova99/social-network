@@ -20,7 +20,7 @@ const MyPosts = (props) => {
   return(
     <div className="my-posts">
       <div className="create-posts">
-        <div className="post-name"><p>My post</p></div>
+        <div className="post-name"><p>Share your news:</p></div>
         <div className="post-input"> 
           <textarea placeholder="Your news..." ref={newPostElement} value={props.newPostText} onChange={onPostChange}/>
         </div>

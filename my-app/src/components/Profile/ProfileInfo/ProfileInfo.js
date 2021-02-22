@@ -1,17 +1,32 @@
+import Preloader from '../../Common/Preloader/Preloader';
 import './ProfileInfo.css';
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
+  let contacts = [];
+
+  if (!props.profile) {
+    return <Preloader />
+  }
+
   return(
     <div className="profile">
       <div className='photo-avatar'>
-        <img alt="" src='https://pcache-06.chocoapp.ru/h2/6/24350568/0/58bcbbd0c34f31d6de3f4e4d2095a868/2/18755738_500sq.jpg'></img>
+        <img alt="" src={props.profile.photos.large}></img>
       </div>
       <div className="profile-information">
-        <p className="profile-name">Name Surname</p>
-        <p><span>Date of Birth:</span> 2 January</p>
-        <p><span>City:</span> Moscow</p>
-        <p><span>Education:</span> BSU</p>
-        <p><span>Web Site:</span> google.com</p>
+        <p className="profile-name">{props.profile.fullName}</p>
+        {(props.profile.lookingForAJob ? <p>I'm looking for a job. {props.profile.lookingForAJobDescription}</p> : null)}
+        <p><span>Contacts:</span></p>
+        <p>
+          <p><span>github: </span>{props.profile.contacts.github ? <span>{props.profile.contacts.github}</span> : " - "}</p>
+          <p><span>vk: </span>{props.profile.contacts.vk ? <span>{props.profile.contacts.vk}</span> : " - "}</p>
+          <p><span>facebook: </span>{props.profile.contacts.facebook ? <span>{props.profile.contacts.facebook}</span> : " - "}</p>
+          <p><span>instagram: </span>{props.profile.contacts.instagram ? <span>{props.profile.contacts.instagram}</span> : " - "}</p>
+          <p><span>twitter: </span>{props.profile.contacts.twitter ? <span>{props.profile.contacts.twitter}</span> : " - "}</p>
+          <p><span>website: </span>{props.profile.contacts.website ? <span>{props.profile.contacts.website}</span> : " - "}</p>
+          <p><span>youtube: </span>{props.profile.contacts.youtube ? <span>{props.profile.contacts.youtube}</span> : " - "}</p>
+          <p><span>mainLink: </span>{props.profile.contacts.mainLink ? <span>{props.profile.contacts.mainLink}</span> : " - "}</p>
+        </p>
       </div>
     </div>
   );

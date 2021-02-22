@@ -6,7 +6,7 @@ import UsersContainer from './components/Users/UsersContainer';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
-import Profile from './components/Profile/Profile';
+import ProfileContainer from './components/Profile/ProfileContainer';
 import SidebarContainer from './components/Sidebar/SidebarContainer';
 
 const App = (props) => {
@@ -20,7 +20,7 @@ const App = (props) => {
           <Route path="/settings" component={Settings} />
           <Route path="/users" component={UsersContainer} />
           <Route path="/dialogs" render={() => <DialogsContainer />} />
-          <Route path="/profile" render={() => <Profile />} />
+          <Route path="/profile" render={() => <ProfileContainer />} />
         </div>
         <SidebarContainer />
       </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from "react-redux"
+import { connect } from "react-redux";
 import axios from "axios";
 import Users from "./Users";
 import { follow, getCurrentPage, getTotalCount, getUsers, toggleIsLoading, unfollow } from "../../redux/usersReducer"
