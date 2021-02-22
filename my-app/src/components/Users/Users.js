@@ -1,14 +1,18 @@
-import axios from "axios";
 import "./Users.css";
 import userPhoto from "./../../assets/images/user.jpeg";
 
 const Users = (props) => {
-    if (props.users.length === 0) {
-        console.log("!")
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then((res) => props.getUsers(res.data.items));
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i);
     }
+
     return (
         <div>
+            <div className="pages-buttons">
+                {pages.map(page => <span className={props.currentPage === page && "active-number"} onClick={() => props.onPageChanged(page)}>{page} </span> )}
+            </div>
             {props.users.map(user => 
                 <div key={user.id}>
                     <div>
@@ -29,7 +33,6 @@ const Users = (props) => {
                 </div>
             )}
         </div>
-
     );
 }
 

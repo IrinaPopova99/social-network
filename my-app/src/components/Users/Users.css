@@ -1,0 +1,6 @@
+.pages-buttons {
+    cursor: pointer;
+}
+.active-number {
+    font-weight: bold;
+}
