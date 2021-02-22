@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from "react-redux"
 import axios from "axios";
 import Users from "./Users";
-import { followUserAC, getCurrentPageAC, getTotalCountAC, getUsersAC, toggleIsLoadingAC, unfollowUserAC } from "../../redux/usersReducer"
+import { follow, getCurrentPage, getTotalCount, getUsers, toggleIsLoading, unfollow } from "../../redux/usersReducer"
 import Preloader from '../Common/Preloader/Preloader';
 
 class UsersContainer extends React.Component {
@@ -51,15 +51,16 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userId) => dispatch(followUserAC(userId)),
-        unfollow: (userId) => dispatch(unfollowUserAC(userId)),
-        getUsers: (users) => dispatch(getUsersAC(users)),
-        getCurrentPage: (currentPage) => dispatch(getCurrentPageAC(currentPage)),
-        getTotalCount: (totalCount) => dispatch(getTotalCountAC(totalCount)),
-        toggleIsLoading: (isLoading) => dispatch(toggleIsLoadingAC(isLoading)),
-    }
-}
+export default connect(mapStateToProps, { follow, unfollow, getUsers, getCurrentPage, getTotalCount, toggleIsLoading })(UsersContainer);
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+// этот функционал перенесен в функцию connect в виде объекта
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//         follow: (userId) => dispatch(followUserAC(userId)),
+//         unfollow: (userId) => dispatch(unfollowUserAC(userId)),
+//         getUsers: (users) => dispatch(getUsersAC(users)),
+//         getCurrentPage: (currentPage) => dispatch(getCurrentPageAC(currentPage)),
+//         getTotalCount: (totalCount) => dispatch(getTotalCountAC(totalCount)),
+//         toggleIsLoading: (isLoading) => dispatch(toggleIsLoadingAC(isLoading)),
+//     }
+// }
