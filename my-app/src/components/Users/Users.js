@@ -12,21 +12,23 @@ const Users = (props) => {
     return (
         <div>
             {props.users.map(user => 
-                <div key={user.id}>
-                    <div>
+                <div className="user-card" key={user.id}>
+                    <div className="user-info">
                         <div className="photo-mini">
                             <NavLink to={`/profile/${user.id}`}><img src={user.photos.small || userPhoto} /></NavLink>
                         </div>
-                        <div>
-                            { user.followed 
-                                ? <button onClick={ () => props.unfollow(user.id) }>Unfollow</button> 
-                                : <button onClick={ () => props.follow(user.id) }>Follow</button>
-                            }
+                        <div className="user-info__text">
+                            <div><b>Username:</b> {user.name}</div>
+                            <div>
+                                <b>Status:</b> {user.status || "-" }
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        <div>{user.name}</div>
-                        <div>{user.status}</div>
+                    <div className="follow-button">
+                        { user.followed 
+                            ? <button onClick={ () => props.unfollow(user.id) }>Unfollow</button> 
+                            : <button onClick={ () => props.follow(user.id) }>Follow</button>
+                        }
                     </div>
                 </div>
             )}

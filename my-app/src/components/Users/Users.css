@@ -4,3 +4,31 @@
 .active-number {
     font-weight: bold;
 }
+.user-card {
+    margin-bottom: 25px;
+}
+.user-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.user-info__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 25px;
+}
+.follow-button {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    outline: none;
+    border:none;
+  }
+.follow-button button {
+    background-color: #90a777;
+    border-radius: 8px;
+    border: none;
+    height: 30px;
+    width: 100px;
+    color: #ffffff;
+}
