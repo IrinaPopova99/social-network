@@ -8,7 +8,8 @@ import Preloader from '../Common/Preloader/Preloader';
 class UsersContainer extends React.Component {
     componentDidMount() {
         this.props.toggleIsLoading(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, 
+                    {withCredentials: true})
             .then((res) => {
                 this.props.getUsers(res.data.items);
                 this.props.getTotalCount(res.data.totalCount);
@@ -19,9 +20,38 @@ class UsersContainer extends React.Component {
     onPageChanged = (page) => {
         this.props.toggleIsLoading(true);
         this.props.getCurrentPage(page);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`, 
+                    {withCredentials: true})
             .then((res) => this.props.getUsers(res.data.items));
         this.props.toggleIsLoading(false);
+    }
+
+    onFollow = (userId) => {
+        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {}, { 
+                        withCredentials: true,
+                        headers: {
+                            "API-KEY": "e9c3e74e-8fd8-4678-9a75-20b768afb84a"
+                        }
+                    })
+            .then((res) => {
+                if (res.data.resultCode == 0) {
+                    this.props.follow(userId)
+                }
+            });
+    }
+
+    onUnfollow = (userId) => {
+        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, { 
+                    withCredentials: true,
+                    headers: {
+                        "API-KEY": "e9c3e74e-8fd8-4678-9a75-20b768afb84a"
+                    }
+                })
+            .then((res) => {
+                if (res.data.resultCode == 0) {
+                    this.props.unfollow(userId)
+                }
+            });
     }
  
     render() {  
@@ -34,8 +64,8 @@ class UsersContainer extends React.Component {
                     pageSize={this.props.pageSize}
                     onPageChanged={this.onPageChanged}
                     users={this.props.users}
-                    follow={this.props.follow}
-                    unfollow={this.props.unfollow}/>
+                    follow={this.onFollow}
+                    unfollow={this.onUnfollow}/>
             </>
         );
     }
