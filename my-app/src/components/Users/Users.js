@@ -11,14 +11,11 @@ const Users = (props) => {
 
     return (
         <div>
-            <div className="pages-buttons">
-                {pages.map(page => <span className={props.currentPage === page && "active-number"} onClick={() => props.onPageChanged(page)}>{page} </span> )}
-            </div>
             {props.users.map(user => 
                 <div key={user.id}>
                     <div>
                         <div className="photo-mini">
-                            <NavLink to={'/profile/id'}><img src={user.photos.small || userPhoto} /></NavLink>
+                            <NavLink to={`/profile/${user.id}`}><img src={user.photos.small || userPhoto} /></NavLink>
                         </div>
                         <div>
                             { user.followed 
@@ -33,6 +30,9 @@ const Users = (props) => {
                     </div>
                 </div>
             )}
+            <div className="pages-buttons">
+                {pages.map(page => <span className={props.currentPage === page && "active-number"} onClick={() => props.onPageChanged(page)}>{page} </span> )}
+            </div>
         </div>
     );
 }

@@ -1,4 +1,5 @@
 import Preloader from '../../Common/Preloader/Preloader';
+import userPhoto from './../../../assets/images/user.jpeg'
 import './ProfileInfo.css';
 
 const ProfileInfo = (props) => {
@@ -11,7 +12,7 @@ const ProfileInfo = (props) => {
   return(
     <div className="profile">
       <div className='photo-avatar'>
-        <img alt="" src={props.profile.photos.large}></img>
+        <img alt="" src={props.profile.photos.large || userPhoto}></img>
       </div>
       <div className="profile-information">
         <p className="profile-name">{props.profile.fullName}</p>
