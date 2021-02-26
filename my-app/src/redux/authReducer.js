@@ -1,3 +1,5 @@
+import { AuthAPI, ProfileAPI } from "./../api/api";
+
 const SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA';
 const SET_CURRENT_USER = 'SET_CURRENT_USER';
 
@@ -38,5 +40,16 @@ export const setCurrentUser = (photo) => ({
     type: SET_CURRENT_USER,
     photo
 });
+
+export const getAuthUserData = () => (dispatch) => {
+    AuthAPI.setAuthUserDataAPI().then((data) => {
+        if (data.resultCode === 0) {
+            dispatch(setAuthUserData(data.data));
+            ProfileAPI.getUserProfileAPI(data.data.id).then(data => {
+                    dispatch(setCurrentUser(data.photos.small));
+            })
+        }
+    });
+}
 
 export default authReducer;

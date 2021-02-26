@@ -1,20 +1,18 @@
 import React from 'react';
 import { connect } from "react-redux";
-import axios from "axios";
 import Profile from './Profile';
 import { getUserProfile } from './../../redux/profileReducer';
 import { withRouter } from 'react-router-dom';
+import { withAuthRedirect } from '../../hoc/withAuthRedirect';
+import { compose } from 'redux';
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
     let userId = this.props.match.params.userId
     if (!userId) {
-      userId = 2;
+      userId = this.props.auth.userId;
     }
-    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-            .then((res) => {
-                this.props.getUserProfile(res.data);
-            });
+    this.props.getUserProfile(userId);
   }
 
   render() {
@@ -29,9 +27,12 @@ class ProfileContainer extends React.Component {
 }
 
 let mapStateToProps = (state) => ({
-  profile: state.profilePage.profile
+  profile: state.profilePage.profile,
+  auth: state.auth
 });
-
-let WithUrlDataContainerComponent = withRouter(ProfileContainer)
-
-export default connect(mapStateToProps, { getUserProfile })(WithUrlDataContainerComponent);
+// в compose компоненты перебрасывают снизу вверх
+export default compose(
+  connect(mapStateToProps, { getUserProfile }),
+  withRouter,
+  withAuthRedirect
+)(ProfileContainer);

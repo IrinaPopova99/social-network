@@ -8,6 +8,8 @@ const Users = (props) => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
     }
+    
+    let isDisabled = props.followingInProgress;
 
     return (
         <div>
@@ -26,8 +28,12 @@ const Users = (props) => {
                     </div>
                     <div className="follow-button">
                         { user.followed 
-                            ? <button onClick={ () => props.unfollow(user.id) }>Unfollow</button> 
-                            : <button onClick={ () => props.follow(user.id) }>Follow</button>
+                            ? <button disabled={isDisabled.some(id => id === user.id)} onClick={ () => props.unfollow(user.id) }>
+                                {isDisabled.some(id => id === user.id) ? 'Wait...' : 'Unfollow'}
+                            </button> 
+                            : <button disabled={isDisabled.some(id => id === user.id)} onClick={ () => props.follow(user.id) }>
+                                {isDisabled.some(id => id === user.id) ? 'Wait...' : 'Follow'}
+                            </button>
                         }
                     </div>
                 </div>

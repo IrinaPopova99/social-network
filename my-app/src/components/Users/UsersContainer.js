@@ -1,61 +1,25 @@
 import React from 'react';
 import { connect } from "react-redux";
-import axios from "axios";
 import Users from "./Users";
-import { follow, getCurrentPage, getTotalCount, getUsers, toggleIsLoading, unfollow } from "../../redux/usersReducer"
+import { 
+    getUsers,
+    followUser,
+    unfollowUser,
+} from "../../redux/usersReducer";
 import Preloader from '../Common/Preloader/Preloader';
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.toggleIsLoading(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, 
-                    {withCredentials: true})
-            .then((res) => {
-                this.props.getUsers(res.data.items);
-                this.props.getTotalCount(res.data.totalCount);
-            });
-        this.props.toggleIsLoading(false);
+        this.props.getUsers(this.props.currentPage, this.props.pageSize);
     }
 
-    onPageChanged = (page) => {
-        this.props.toggleIsLoading(true);
-        this.props.getCurrentPage(page);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`, 
-                    {withCredentials: true})
-            .then((res) => this.props.getUsers(res.data.items));
-        this.props.toggleIsLoading(false);
-    }
+    onPageChanged = (page) => this.props.getUsers(page, this.props.pageSize);
 
-    onFollow = (userId) => {
-        axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, {}, { 
-                        withCredentials: true,
-                        headers: {
-                            "API-KEY": "e9c3e74e-8fd8-4678-9a75-20b768afb84a"
-                        }
-                    })
-            .then((res) => {
-                if (res.data.resultCode == 0) {
-                    this.props.follow(userId)
-                }
-            });
-    }
+    onFollow = (userId) => this.props.followUser(userId);
 
-    onUnfollow = (userId) => {
-        axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`, { 
-                    withCredentials: true,
-                    headers: {
-                        "API-KEY": "e9c3e74e-8fd8-4678-9a75-20b768afb84a"
-                    }
-                })
-            .then((res) => {
-                if (res.data.resultCode == 0) {
-                    this.props.unfollow(userId)
-                }
-            });
-    }
+    onUnfollow = (userId) => this.props.unfollowUser(userId);
  
     render() {  
-        console.log(this.props.isLoading)     
         return (
             <>  
                 {this.props.isLoading ? <Preloader /> : null} 
@@ -65,7 +29,8 @@ class UsersContainer extends React.Component {
                     onPageChanged={this.onPageChanged}
                     users={this.props.users}
                     follow={this.onFollow}
-                    unfollow={this.onUnfollow}/>
+                    unfollow={this.onUnfollow}
+                    followingInProgress={this.props.followingInProgress}/>
             </>
         );
     }
@@ -77,11 +42,18 @@ const mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isLoading: state.usersPage.isLoading
+        isLoading: state.usersPage.isLoading,
+        followingInProgress: state.usersPage.followingInProgress
     }
 }
 
-export default connect(mapStateToProps, { follow, unfollow, getUsers, getCurrentPage, getTotalCount, toggleIsLoading })(UsersContainer);
+export default connect(mapStateToProps, { 
+    getUsers,
+    followUser,
+    unfollowUser,
+})(UsersContainer);
+
+
 
 // этот функционал перенесен в функцию connect в виде объекта
 // const mapDispatchToProps = (dispatch) => {
