@@ -18,8 +18,12 @@
     flex-direction: column;
     align-items: flex-end;
 }
-.send-message textarea {
+.send-message input {
     width: 99.25%;
+    outline: none;
+    border: 1px solid #888888;
     border-radius: 8px;
     min-height: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
 }

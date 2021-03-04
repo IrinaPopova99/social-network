@@ -1,27 +1,20 @@
 import { NavLink } from 'react-router-dom';
-import logo from './../../static/logo.png';
-import userPhoto from './../../assets/images/user.jpeg';
+import SmallRoundPhoto from '../Common/SmallRoundPhoto/SmallRoundPhoto';
 import './Header.css';
+import HeaderLogo from './HeaderLogo';
 
 const Header = (props) => {
     return (
         <header className="header">
-            <div className='logo-block'>
-                <div className='logo-block__image'><img alt="{logo}" src={logo} /></div>
-                <div className='logo-block__text'><span>My Network</span></div>
-            </div>
-            <div className='header-search'>
-                <i className="fas fa-search"></i>
-                <input type='search' placeholder="Search..."></input>
-            </div>
+            <HeaderLogo />
             <div className='header-login'>
-                { props.isAuth ? <div className="photo-mini">
-                                    <img alt="" src={props.photo || userPhoto} alt={props.login} title={props.login}></img>
-                                </div> : <NavLink to="/login">Login</NavLink> }
-                {/* <div><i class="fas fa-chevron-down"></i></div> */}
-                {/* <div className="header-settings__icons"><i className="fas fa-question-circle"></i></div>
-                <div className="header-settings__icons"><i className="fas fa-bell"></i></div>
-                <div className="header-settings__icons"><i className="fas fa-globe"></i></div> */}
+                {props.isAuth 
+                    ? <div className="header-login__is-auth">
+                        <SmallRoundPhoto photo={props.photo} login={props.login} />
+                        <span className="header-login__slash"> | </span>
+                        <div className="header-login__logout" onClick={props.onLogoutUser}>Выйти</div>
+                    </div>
+                    : <NavLink className="header__logout" to="/login">Login</NavLink>}
             </div>
         </header>
     );

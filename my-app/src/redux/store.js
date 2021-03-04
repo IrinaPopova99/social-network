@@ -1,5 +1,7 @@
-import dialogsReducer from './dialogsReducer';
-import profileReducer from './profileReducer';
+// This store was created for a study to understand how redux works
+
+import dialogsReducer from './dialogs/dialogsReducer';
+import profileReducer from './profile/profileReducer';
 
 let store = {
     _state: {

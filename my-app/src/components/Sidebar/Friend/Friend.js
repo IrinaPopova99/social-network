@@ -1,11 +1,10 @@
+import SmallRoundPhoto from "../../Common/SmallRoundPhoto/SmallRoundPhoto";
 import "./Friend.css";
 
 const Friend = (props) => {
     return (
         <div className="friend">
-            <div className="photo-mini">
-                <img alt="" src='https://pcache-06.chocoapp.ru/h2/6/24350568/0/58bcbbd0c34f31d6de3f4e4d2095a868/2/18755738_500sq.jpg'></img>
-            </div>
+            <SmallRoundPhoto />
             <p>{props.name}</p>
         </div>
     );

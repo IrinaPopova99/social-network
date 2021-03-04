@@ -2,51 +2,35 @@ import { NavLink } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
-  return (
-    <nav className="nav main">
-        <h3>MENU</h3>
-        <NavLink to="/profile">
-          <div className='nav__item'>
-            <div className="nav__icons">
-              <i className="fas fa-home"></i>
-            </div>
+    return (
+        <nav className="nav main">
+            <h3>MENU</h3>
+            <NavLink to="/profile">
+                <div className='nav__item'>
+                    <div className="nav__icons">
+                        <i class="fas fa-user"></i>
+                    </div>
             Profile
           </div>
-        </NavLink>
-        <NavLink to="/dialogs">
-        <div className='nav__item'>
-          <div className="nav__icons">
-            <i className="fas fa-envelope"></i>
-          </div>
+            </NavLink>
+            <NavLink to="/dialogs">
+                <div className='nav__item'>
+                    <div className="nav__icons">
+                        <i class="fas fa-envelope"></i>
+                    </div>
           Messages
         </div>
-        </NavLink>
-        <NavLink to="/news">
-          <div className='nav__item'>
-            <div className="nav__icons">
-              <i className="fas fa-users"></i>
-            </div>
-            News
-          </div>
-        </NavLink>
-        <NavLink to="/users">
-          <div className='nav__item'>
-            <div className="nav__icons">
-              <i className="fas fa-calendar-alt"></i>
-            </div>
+            </NavLink>
+            <NavLink to="/users">
+                <div className='nav__item'>
+                    <div className="nav__icons">
+                        <i class="fas fa-users"></i>
+                    </div>
             Users
           </div>
-        </NavLink>
-        <NavLink to="/settings">
-          <div className='nav__item'>
-            <div className="nav__icons">
-            <i className="fas fa-cog"></i>
-            </div>
-            Settings
-          </div>
-      </NavLink>
-    </nav>
-  );
+            </NavLink>
+        </nav>
+    );
 }
 
 export default Navbar;

@@ -10,36 +10,63 @@ const instance = axios.create({
 
 export const UsersAPI = {
     getUsersAPI(currentPage, pageSize) {
-        return(
+        return (
             instance.get(`users?page=${currentPage}&count=${pageSize}`)
-                .then(response => {return response.data})
-    )},
+                .then(response => { return response.data })
+        )
+    },
     followAPI(userId) {
-        return(
+        return (
             instance.post(`follow/${userId}`)
-                .then(response => {return response.data})
+                .then(response => { return response.data })
         )
     },
     unfollowAPI(userId) {
-        return(
+        return (
             instance.delete(`follow/${userId}`)
-                .then(response => {return response.data})
+                .then(response => { return response.data })
         )
     },
 }
 
 export const ProfileAPI = {
     getUserProfileAPI(userId) {
-        return(
+        return (
             instance.get(`profile/${userId}`)
-                .then(response => {return response.data})
-    )},
+                .then(response => { return response.data })
+        )
+    },
+    getUserStatusAPI(userId) {
+        return (
+            instance.get(`profile/status/${userId}`)
+                .then(response => { return response.data })
+        )
+    },
+    updateStatusAPI(status) {
+        return (
+            instance.put(`profile/status`, { status })
+                .then(response => { return response.data })
+        )
+    }
 }
 
 export const AuthAPI = {
     setAuthUserDataAPI() {
-        return(
+        return (
             instance.get(`auth/me`)
-                .then(response => {return response.data})
-    )},
+                .then(response => { return response.data })
+        )
+    },
+    loginUserAPI(email, password, rememberMe) {
+        return (
+            instance.post(`/auth/login`, { email, password, rememberMe })
+                .then(response => { return response.data })
+        )
+    },
+    logoutUserAPI() {
+        return (
+            instance.delete(`/auth/login`)
+                .then(response => { return response.data })
+        )
+    }
 }
