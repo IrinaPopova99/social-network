@@ -6,6 +6,7 @@ let initialState = {
     login: null,
     photo: null,
     isAuth: false,
+    error: '',
 };
 
 const authReducer = (state = initialState, action) => {
@@ -16,12 +17,18 @@ const authReducer = (state = initialState, action) => {
                 userId: action.data.id,
                 email: action.data.email,
                 login: action.data.login,
-                isAuth: action.data.isAuth
+                isAuth: action.data.isAuth,
+                error: ''
             };
         case types.SET_CURRENT_USER:
             return {
                 ...state,
                 photo: action.photo
+            }
+        case types.ERROR_FROM_SERVER: 
+            return {
+                ...state,
+                error: action.error[0]
             }
         default: {
             return state;

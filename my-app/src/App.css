@@ -67,3 +67,8 @@ input, button, textarea {
   width: 100px;
   color: #ffffff;
 }
+.error-message {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  color: red;
+}

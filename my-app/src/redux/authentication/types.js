@@ -1,6 +1,7 @@
 const types = {
     SET_AUTH_USER_DATA: 'SET_AUTH_USER_DATA',
     SET_CURRENT_USER: 'SET_CURRENT_USER',
+    ERROR_FROM_SERVER: 'ERROR_FROM_SERVER',
 }
 
 export default types;

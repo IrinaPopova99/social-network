@@ -9,6 +9,10 @@ const setCurrentUser = (photo) => ({
     type: types.SET_CURRENT_USER,
     photo
 });
+const setErrorFromServer = (error) => ({
+    type: types.ERROR_FROM_SERVER,
+    error
+})
 
 export const getAuthUserData = () => (dispatch) => {
     AuthAPI.setAuthUserDataAPI().then((data) => {
@@ -24,6 +28,8 @@ export const getLoginUser = (email, password, rememberMe) => (dispatch) => {
     AuthAPI.loginUserAPI(email, password, rememberMe).then((data) => {
         if (data.resultCode === 0) {
             dispatch(getAuthUserData());
+        } else {
+            dispatch(setErrorFromServer(data.messages))
         }
     });
 }

@@ -7,13 +7,14 @@ class LoginContainer extends React.Component {
     onGetLoginUser = (email, password, rememberMe) => this.props.getLoginUser(email, password, rememberMe);
     render() {
         return (
-            <Login onGetLoginUser={this.onGetLoginUser} isAuth={this.props.isAuth} />
+            <Login onGetLoginUser={this.onGetLoginUser} isAuth={this.props.isAuth} error={this.props.error}/>
         );
     }
 }
 
 const mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth
+    isAuth: state.auth.isAuth,
+    error: state.auth.error
 });
 
 export default connect(mapStateToProps, { getLoginUser })(LoginContainer);

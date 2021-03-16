@@ -4,8 +4,6 @@ import ProfileStatus from "./ProfileStatus";
 import './ProfileInfo.css';
 
 const ProfileInfo = (props) => {
-    let contacts = [];
-
     if (!props.profile) {
         return <Preloader />
     }
@@ -17,7 +15,7 @@ const ProfileInfo = (props) => {
             </div>
             <div className="profile-information">
                 <p className="profile-name">{props.profile.fullName}</p>
-                <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus} />
+                <ProfileStatus status={props.status} />
                 <p><span>Contacts:</span></p>
                 <p>
                     <p><span>github: </span>{props.profile.contacts.github ? <span>{props.profile.contacts.github}</span> : " - "}</p>

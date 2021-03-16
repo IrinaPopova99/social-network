@@ -1,49 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { updateUserStatus } from '../../../redux/profile/actions';
+import { ProfileForm } from './ProfileForm';
 
-class ProfileStatus extends React.Component {
-    state = {
-        editMode: false,
-        status: this.props.status
+const ProfileStatus = (props) => {
+    const [editMode, setEditMode] = useState(false);
+    const dispatch = useDispatch();
+    const onChangeStatus = (status) => {
+        setEditMode(false);
+        dispatch(updateUserStatus(status));
     }
-    onActivateEditMode = () => {
-        this.setState({
-            editMode: true
-        });
-    }
-    onDeactivateEditMode = () => {
-        this.setState({
-            editMode: false
-        });
-        this.props.updateUserStatus(this.state.status);
-    }
-    onStatusChange = (e) => {
-        this.setState({
-            status: e.currentTarget.value
-        });
-    }
-    componentDidUpdate(prevProps) {
-        if (prevProps.status !== this.props.status) {
-            this.setState({
-                status: this.props.status
-            });
-        }
+    const onActivateEditMode = () => setEditMode(true)
 
-    }
-    // перенести все в формы (input) используя useForm
-    render() {
-        return (
-            <div>
-                <span>Status: </span>
-                {(!this.state.editMode
-                    ? <span onDoubleClick={this.onActivateEditMode}>
-                        {this.props.status ? this.props.status : <span>Add status</span>}
-                    </span>
-                    : <input onChange={this.onStatusChange} autoFocus='true' onBlur={this.onDeactivateEditMode} value={this.props.status} />
-                )}
+    return (<>
 
-            </div>
-        );
-    }
+        {(!editMode
+            ? <span onDoubleClick={onActivateEditMode} >
+                {props.status || <span>Add status</span>}
+            </span>
+            : <ProfileForm onChangeStatus={onChangeStatus} status={props.status} />
+        )}
+    </>
+    );
 }
+
+// class ProfileStatus extends React.Component {
+//     state = {
+//         editMode: false,
+//     }
+//     onActivateEditMode = () => {
+//         this.setState({ editMode: true })
+//     }
+//     onChangeStatus = (status) => {
+//         updateUserStatus(status);
+//     }
+//     // this.setState({ editMode: false })
+//     // перенести все в формы (input) используя useForm
+//     render() {
+
+//         return (<>
+//         <ProfileForm onChangeStatus={this.onChangeStatus} status={this.props.status} />
+//             {/* {(!this.state.editMode
+//                 ? <span onDoubleClick={this.onActivateEditMode} >
+//                     {this.props.status || <span>Add status</span>}
+//                 </span>
+//                 : 
+//             )} */}
+//         </>
+//         );
+//     }
+// }
 
 export default ProfileStatus;

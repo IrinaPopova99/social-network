@@ -5,7 +5,7 @@ import './Profile.css';
 const Profile = (props) => {
     return (
         <div>
-            <ProfileInfo profile={props.profile} status={props.status} updateUserStatus={props.updateUserStatus} />
+            <ProfileInfo profile={props.profile} status={props.status} />
             <MyPostsContainer />
         </div>
     );
